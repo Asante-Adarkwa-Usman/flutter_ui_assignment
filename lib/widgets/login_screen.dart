@@ -30,12 +30,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 120,
                 height: 120,
               ),
+              //Welcome Text
               const Text(
                 'Welcome to a \n Vet Records',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 40),
-
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -58,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             keyboardType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
+                            //Validating email input
                             validator: (value) {
                               if (value!.isEmpty ||
                                   !RegExp(
@@ -80,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               hintStyle: const TextStyle(color: Colors.grey),
                               suffixIcon: GestureDetector(
                                 onTap: () {
+                                  //Update the password visibility state
                                   setState(() {
                                     _passwordvisible = !_passwordvisible;
                                   });
@@ -96,13 +98,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             textInputAction: TextInputAction.done,
                             keyboardType: TextInputType.visiblePassword,
+                            //Validating password
                             validator: (value) {
+                              // Check if the password is empty
                               if (value == null || value.isEmpty) {
                                 return 'Password is required';
                               }
+                              // Check if the password is at least 6 characters long
                               if (value.length < 6) {
                                 return 'Password must be at least 6 characters';
                               }
+                              // Check if the password contains at least one uppercase letter,
+                              // one lowercase letter, and one number
                               if (!RegExp(
                                 r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$',
                               ).hasMatch(value)) {
